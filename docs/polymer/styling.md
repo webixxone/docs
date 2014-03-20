@@ -57,36 +57,36 @@ The veiling process can be used to prevent FOUC at times other than page load. T
 
 ## Polyfill styling directives {#directives}
 
-When running under the polyfill, {{site.project_title}} has `@polyfill-*`
+When running under the polyfill, {{site.project_title}} has `polyfill-next-selector`
 directives to give you more control for how Shadow DOM styling is shimmed.
 
-### @polyfill {#at-polyfill}
+### polyfill-next-selector {#polyfill-directive}
 
-The `@polyfill` directive is used to replace a native CSS selector with one that
-will work under the polyfill. For example, targeting distributed nodes using `::content` only works under native Shadow DOM. Instead, you can tell {{site.project_title}} to replace said
+The `polyfill-next-selector` directive is used to replace a native CSS selector with one that
+will work under the polyfill. For example, targeting distributed nodes using `/content/` only works under native Shadow DOM. Instead, you can tell {{site.project_title}} to replace said
 rules with ones compatible with the polyfill.
 
-To replace native rules, place `@polyfill` inside a CSS comment above the 
-style rule you want to replace. The string next to `"@polyfill"` indicates a
+To replace native rules, place `polyfill-next-selector` above the 
+style rule you want to replace. The string inside the `content` property of `polyfill-next-selector` indicates a
 CSS selector to replace the next style rule with. For example:
 
-    /* @polyfill .bar */
-    ::content .bar {
+    polyfill-next-selector { content: '.bar' }
+    * /content/ .bar {
       color: red;
     }
     
-    /* @polyfill :host > .bar */
-    ::content .bar {
+    polyfill-next-selector { content: ':host > .bar' }
+    * /content/ .bar {
       color: blue;
     }
 
-    /* @polyfill .container > * */
-    ::content > * {
+    polyfill-next-selector { content: '.container > *' }
+    * /content/ > * {
       border: 1px solid black;
     }
 
 Under native Shadow DOM nothing changes. Under the polyfill the native selector 
-s replaced with the one in the `@polyfill` comment above it:
+is replaced with the one in the `polyfill-next-selector` above it:
 
     x-foo .bar {
       color: red;
@@ -101,7 +101,7 @@ s replaced with the one in the `@polyfill` comment above it:
     }
 
 
-**Tip:** If you use a CSS preprocessor, be careful that it doesn't strip out the `@polyfill` comments.
+**Tip:** If you use a CSS preprocessor, be careful that it doesn't strip out the `polyfill-next-selector`.
 {: .alert .alert-error }
 
 ### @polyfill-rule {#at-polyfill-rule}

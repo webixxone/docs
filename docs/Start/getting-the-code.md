@@ -31,7 +31,7 @@ Bower adds a `bower_components/` folder in the root of your project and fills it
 **Tip:** `--save` adds the item as dependencies in *your* app's bower.json:
 ```
 {
-  "name": "my-project",
+  "name": "myproject",
   "version": "0.0.0",
   "dependencies": {
     "polymer": "Polymer/polymer#~{{site.latest_version}}",
